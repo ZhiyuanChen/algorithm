@@ -1,9 +1,4 @@
-class Node(object):
-  def __init__(self, parent=None, key=None, left=None, right=None):
-    self.parent = parent
-    self.key = key
-    self.left = left
-    self.right = right
+from python.tree import *
 
 
 class Tree(object):
@@ -12,23 +7,23 @@ class Tree(object):
 
   def insert(self, key):
     if self.root:
-      self._insert(self.root, key)
+      self._insert(self.root, Node(key))
     else:
-      self.root = Node(None, key)
+      self.root = Node(key)
 
-  def _insert(self, node: Node, key, parent=None, left=False):
-    if not node:
-      if left:
-        parent.left = Node(parent, key)
+  def _insert(self, parent, node):
+    if parent.key > node.key:
+      if parent.left:
+        self._insert(parent.left, node)
       else:
-        parent.right = Node(parent, key)
-    else:
-      if key < node.key:
-        self._insert(node.left, key, node, True)
-      elif key > node.key:
-        self._insert(node.right, key, node, False)
+        parent.left = node
+        node.parent = parent
+    elif parent.key < node.key:
+      if parent.right:
+        self._insert(parent.right, node)
       else:
-        raise Exception("Element already exists")
+        parent.right = node
+        node.parent = parent
 
   def delete(self, key):
     self._delete(self.root, key)
@@ -60,7 +55,8 @@ class Tree(object):
           else:
             node.parent.right.key = right_minimum.key
           self._delete(node.right, right_minimum.key)
-    raise Exception('Element not found')
+    else:
+      raise Exception('Element not found')
 
   @staticmethod
   def minimum(node):
