@@ -15,7 +15,6 @@ def heapify(array: list, length: int, i: int):
 
 def sort(array):
   length = len(array)
-
   # Build a maxheap.
   for i in range(length, -1, -1):
     heapify(array, length, i)
