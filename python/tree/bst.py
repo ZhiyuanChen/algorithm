@@ -24,6 +24,8 @@ class Tree(object):
       else:
         parent.right = node
         node.parent = parent
+    else:
+      raise Exception("Element already exists")
 
   def delete(self, key):
     self._delete(self.root, key)
