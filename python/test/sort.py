@@ -1,6 +1,6 @@
 import unittest
 import random
-from python.sort import insertion, merge, heap, test
+from python.sort import insertion, merge, heap, quick, test
 
 
 class SortTest(unittest.TestCase):
@@ -26,6 +26,10 @@ class SortTest(unittest.TestCase):
   def testHeap(self):
     for l in self.test_list:
       assert self.array == heap.sort(l)
+
+  def testQuick(self):
+    for l in self.test_list:
+      assert self.array == quick.sort(l)
 
   def testTest(self):
     for l in self.test_list:
