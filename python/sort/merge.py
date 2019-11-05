@@ -11,7 +11,7 @@ def sort(array: list) -> list:
     array = list()
     # When there are elements in both @param left, and @param right
     # Pop the smaller element of the 1st element of @param left and @param right, and append it to @param array.
-    while len(left) > 0 and len(right) > 0:
+    while left and right:
       array.append(left.pop(0) if left[0] < right[0] else right.pop(0))
     # If there are remaining elements in @param left or @param right, concatenate them with @param array.
     if left:

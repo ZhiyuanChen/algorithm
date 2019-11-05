@@ -1,6 +1,6 @@
 import unittest
 import random
-from . import insertion, merge
+from python.sort import insertion, merge, test
 
 
 class SortTest(unittest.TestCase):
@@ -22,6 +22,10 @@ class SortTest(unittest.TestCase):
   def testMerge(self):
     for l in self.test_list:
       assert self.array == merge.sort(l)
+
+  def testTest(self):
+    for l in self.test_list:
+      assert self.array == test.sort(l)
 
 
 if __name__ == "__main__":
