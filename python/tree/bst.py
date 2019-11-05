@@ -27,15 +27,15 @@ class Tree(object):
     else:
       raise Exception("Element already exists")
 
-  def delete(self, key):
-    self._delete(self.root, key)
+  def remove(self, key):
+    self._remove(self.root, key)
 
-  def _delete(self, node, key, left=False):
+  def _remove(self, node, key, left=False):
     if node:
       if node.key > key:
-        self._delete(node.left, key, True)
+        self._remove(node.left, key, True)
       elif node.key < key:
-        self._delete(node.right, key, False)
+        self._remove(node.right, key, False)
       else:
         if not node.left:
           if not node.right:
@@ -56,7 +56,7 @@ class Tree(object):
             node.parent.left.key = right_minimum.key
           else:
             node.parent.right.key = right_minimum.key
-          self._delete(node.right, right_minimum.key)
+          self._remove(node.right, right_minimum.key)
     else:
       raise Exception('Element not found')
 
@@ -74,4 +74,4 @@ if __name__ == '__main__':
   tree.insert(3)
   tree.insert(8)
   tree.insert(6)
-  tree.delete(5)
+  tree.remove(5)
